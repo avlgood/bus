@@ -54,7 +54,7 @@ def getResult(curTime):
             nextTime = t
             print("szy breaking at 1 " + h1 + " vs " + h)
             break
-        elif int(h1) <= int(h) and int(m1) > int(m):
+        elif h1 == h and int(m1) > int(m):
             nextTime = t
             print("szy breaking at 2 " +  h1 + " vs " + h + ", " + m1 + " vs " + m)
             break
