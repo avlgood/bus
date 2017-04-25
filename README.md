@@ -1,2 +1,2 @@
 # bus
-Get bus schedule
+Get bus schedule - next arriving bus.
