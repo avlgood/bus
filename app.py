@@ -29,9 +29,12 @@ def bus():
     
     schedules = ["6:40", "7:20", "7:45", "8:10", "8:35", "9:00", "9:30", "15:56", "16:15", "16:39", "16:55",
                 "17:27", "17:55", "18:35", "19:05", "20:20", "21:05"]
+    print("Enter 1")
     current_time = req.get("result").get("parameters").get("time")
+    print("Current time" + current_time)
     (h, m, s) = current_time.split(':')
     for t in schedules:
+        print("Enter 2, t = " + t)
         (h1, m1) = t.split(':')
         if h1 > h:
             returnRsponse(current_time, t)
@@ -40,6 +43,7 @@ def bus():
     returnResponse(current_time, "")
 
 def returnRsponse(curTime, nextTime):
+    print("Enter returnRsponse")
     speech = "Current time is: " + curTime + ". Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
     if nextTime:
         speech = "Current time is: " + curTime +  "Congrats Zhaoyan! Your next bus will arrive at " +  time + ", have a nice trip!"
