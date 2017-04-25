@@ -35,7 +35,7 @@ def bus():
         (h1, m1) = t.split(':')
         if h1 > h:
             returnRsponse(current_time, t)
-        else if m1 > m:
+        elif m1 > m:
             returnResponse(current_time, t)
     returnResponse(current_time, "")
 
