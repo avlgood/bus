@@ -29,14 +29,11 @@ def bus():
     
     schedules = ["6:40", "7:20", "7:45", "8:10", "8:35", "9:00", "9:30", "15:56", "16:15", "16:39", "16:55",
                 "17:27", "17:55", "18:35", "19:05", "20:20", "21:05"]
-    print("Enter 1")
     current_time = req.get("result").get("parameters").get("time")
     result = getResult(current_time)
-    print("Exit 1: ", result)
     result = json.dumps(result, indent=4)
     r = make_response(result)
     r.headers['Content-Type'] = 'application/json'
-    print("Enter 2")
     return r 
 
 
@@ -48,20 +45,17 @@ def getResult(curTime):
     (h, m, s) = curTime.split(':')
     nextTime = ""
     for t in schedules:
-        print("Enter 2, t = " + t)
         (h1, m1) = t.split(':')
         if int(h1) > int(h):
             nextTime = t
-            print("szy breaking at 1 " + h1 + " vs " + h)
             break
         elif h1 == h and int(m1) > int(m):
             nextTime = t
-            print("szy breaking at 2 " +  h1 + " vs " + h + ", " + m1 + " vs " + m)
             break
             
-    speech = "Current time is: " + curTime + ". Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
+    speech = "Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
     if nextTime:
-        speech = "Current time is: " + curTime +  ". Congrats Zhaoyan! Your next bus will arrive at " +  nextTime + ", have a nice trip!"
+        speech = "Congrats Zhaoyan! Your next bus will arrive at " +  nextTime + ", have a nice trip!"
 
     print("Response:")
     print(speech)
