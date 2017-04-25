@@ -34,15 +34,15 @@ def bus():
     for t in schedules:
         (h1, m1) = t.split(':')
         if h1 > h:
-            returnRsponse(t)
+            returnRsponse(current_time, t)
         else if m1 > m:
-            returnResponse(t)
-    returnResponse("")
+            returnResponse(current_time, t)
+    returnResponse(current_time, "")
 
-def returnRsponse(time):
-    speech = "Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
-    if time:
-        speech = "Congrats Zhaoyan! Your next bus will arrive at " +  time + ", have a nice trip!"
+def returnRsponse(curTime, nextTime):
+    speech = "Current time is: " + curTime + ". Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
+    if nextTime:
+        speech = "Current time is: " + curTime +  "Congrats Zhaoyan! Your next bus will arrive at " +  time + ", have a nice trip!"
 
     print("Response:")
     print(speech)
