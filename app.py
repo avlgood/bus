@@ -52,17 +52,19 @@ def getResult(curTime):
         (h1, m1) = t.split(':')
         if h1 > h:
             nextTime = t
+            break
         elif m1 > m:
             nextTime = t
+            break
             
     speech = "Current time is: " + curTime + ". Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
     if nextTime:
-        speech = "Current time is: " + curTime +  "Congrats Zhaoyan! Your next bus will arrive at " +  nextTime + ", have a nice trip!"
+        speech = "Current time is: " + curTime +  ". Congrats Zhaoyan! Your next bus will arrive at " +  nextTime + ", have a nice trip!"
 
     print("Response:")
     print(speech)
 
-    result = {
+    return = {
         "speech": speech,
         "displayText": speech,
         # "data": data,
