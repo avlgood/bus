@@ -64,7 +64,7 @@ def getResult(curTime):
     print("Response:")
     print(speech)
 
-    return = {
+    return {
         "speech": speech,
         "displayText": speech,
         # "data": data,
