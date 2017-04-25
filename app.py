@@ -19,7 +19,7 @@ from flask import make_response
 app = Flask(__name__)
 
 @app.route('/bus', methods=['POST'])
-def webhook():
+def bus():
     req = request.get_json(silent=True, force=True)
     print("Request:")
     print(json.dumps(req, indent=4))
