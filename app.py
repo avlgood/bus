@@ -18,6 +18,46 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
+@app.route('/bus', methods=['POST'])
+def webhook():
+    req = request.get_json(silent=True, force=True)
+    print("Request:")
+    print(json.dumps(req, indent=4))
+
+    if req.get("result").get("action") != "schedule":
+        return {}
+    
+    schedules = ["6:40", "7:20", "7:45", "8:10", "8:35", "9:00", "9:30", "15:56", "16:15", "16:39", "16:55",
+                "17:27", "17:55", "18:35", "19:05", "20:20", "21:05"]
+    current_time = req.get("result").get("parameters").get("time")
+    (h, m, s) = current_time.split(':')
+    for t in schedules:
+        (h1, m1) = t.split(':')
+        if h1 > h:
+            returnRsponse(t)
+        else if m1 > m:
+            returnResponse(t)
+    returnResponse("")
+
+def returnRsponse(time):
+    speech = "Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
+    if time:
+        speech = "Congrats Zhaoyan! Your next bus will arrive at " +  time + ", have a nice trip!"
+
+    print("Response:")
+    print(speech)
+
+    result = {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
+    result = json.dumps(result, indent=4)
+    r = make_response(result)
+    r.headers['Content-Type'] = 'application/json'
+    return r 
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
