@@ -31,22 +31,33 @@ def bus():
                 "17:27", "17:55", "18:35", "19:05", "20:20", "21:05"]
     print("Enter 1")
     current_time = req.get("result").get("parameters").get("time")
-    print("Current time" + current_time)
-    (h, m, s) = current_time.split(':')
+    result = getResult(current_time)
+    print("Exit 1: ", result)
+    result = json.dumps(result, indent=4)
+    r = make_response(result)
+    r.headers['Content-Type'] = 'application/json'
+    print("Enter 2")
+    return r 
+
+
+def getResult(curTime):
+    schedules = ["6:40", "7:20", "7:45", "8:10", "8:35", "9:00", "9:30", "15:56", "16:15", "16:39", "16:55",
+                "17:27", "17:55", "18:35", "19:05", "20:20", "21:05"]
+
+    print("Current time" + curTime)
+    (h, m, s) = curTime.split(':')
+    nextTime = ""
     for t in schedules:
         print("Enter 2, t = " + t)
         (h1, m1) = t.split(':')
         if h1 > h:
-            returnRsponse(current_time, t)
+            nextTime = t
         elif m1 > m:
-            returnResponse(current_time, t)
-    returnResponse(current_time, "")
-
-def returnRsponse(curTime, nextTime):
-    print("Enter returnRsponse")
+            nextTime = t
+            
     speech = "Current time is: " + curTime + ". Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
     if nextTime:
-        speech = "Current time is: " + curTime +  "Congrats Zhaoyan! Your next bus will arrive at " +  time + ", have a nice trip!"
+        speech = "Current time is: " + curTime +  "Congrats Zhaoyan! Your next bus will arrive at " +  nextTime + ", have a nice trip!"
 
     print("Response:")
     print(speech)
@@ -58,10 +69,7 @@ def returnRsponse(curTime, nextTime):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
-    result = json.dumps(result, indent=4)
-    r = make_response(result)
-    r.headers['Content-Type'] = 'application/json'
-    return r 
+    
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
