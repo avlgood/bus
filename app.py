@@ -56,7 +56,7 @@ def getResult(curTime):
             break
         elif int(h1) <= int(h) and int(m1) > int(m):
             nextTime = t
-            print("szy breaking at 2 " + m1 + " vs " + m)
+            print("szy breaking at 2 " +  h1 + " vs " + h + ", " + m1 + " vs " + m)
             break
             
     speech = "Current time is: " + curTime + ". Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
