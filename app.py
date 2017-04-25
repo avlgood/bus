@@ -50,10 +50,10 @@ def getResult(curTime):
     for t in schedules:
         print("Enter 2, t = " + t)
         (h1, m1) = t.split(':')
-        if h1 > h:
+        if int(h1) > int(h):
             nextTime = t
             break
-        elif m1 > m:
+        elif int(m1) > int(m):
             nextTime = t
             break
             
