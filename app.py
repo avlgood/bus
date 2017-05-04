@@ -29,7 +29,7 @@ def bus():
     
     schedules = ["6:40", "7:20", "7:45", "8:10", "8:35", "9:00", "9:30", "15:56", "16:15", "16:39", "16:55",
                 "17:27", "17:55", "18:35", "19:05", "20:20", "21:05"]
-    current_time = req.get("result").get("parameters").get("time")
+    current_time = req.get("result").get("parameters").get("Time")
     result = getResult(current_time)
     result = json.dumps(result, indent=4)
     r = make_response(result)
