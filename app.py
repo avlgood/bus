@@ -55,7 +55,7 @@ def getResult(curTime):
             
     speech = "Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
     if nextTime:
-        speech = "Congrats Zhaoyan! Your next bus will arrive at " +  nextTime + ", have a nice trip!"
+        speech = "Hello Zhaoyan! Your next bus will arrive at " +  nextTime + ", have a nice trip!"
 
     print("Response:")
     print(speech)
