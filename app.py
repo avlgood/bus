@@ -27,8 +27,6 @@ def bus():
     if req.get("result").get("action") != "schedule":
         return {}
     
-    schedules = ["6:40", "7:20", "7:45", "8:10", "8:35", "9:00", "9:30", "15:56", "16:15", "16:39", "16:55",
-                "17:27", "17:55", "18:35", "19:05", "20:20", "21:05"]
     current_time = req.get("result").get("parameters").get("Time")
     result = getResult(current_time)
     result = json.dumps(result, indent=4)
@@ -55,7 +53,7 @@ def getResult(curTime):
             
     speech = "Sorry Zhaoyan, there's no more shuttles, you have to call Uber."
     if nextTime:
-        speech = "Hello Zhaoyan! Your next bus will arrive at " +  nextTime + ", have a nice trip!"
+        speech = "Hello Zhaoyan! There's a shuttle coming at " +  nextTime + ", have a nice trip!"
 
     print("Response:")
     print(speech)
